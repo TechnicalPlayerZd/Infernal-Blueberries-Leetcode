@@ -1,2 +1,2 @@
 # Infernal-Blueberries-Leetcode
-For leetcode
+For leetcode problems that I have solved
