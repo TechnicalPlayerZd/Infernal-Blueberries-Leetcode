@@ -7,9 +7,9 @@ var twoSum = function(nums, target) {
     let hashmap = {};
 
     for (let i=0; i < nums.length; i++) {
-        const complement = target - nums[i];
+        let complement = target - nums[i];
         if (complement in hashmap) {
-            return [i, hashmap[complement]];
+            return [hashmap[complement], i];
         }
         hashmap[nums[i]] = i;
     }
