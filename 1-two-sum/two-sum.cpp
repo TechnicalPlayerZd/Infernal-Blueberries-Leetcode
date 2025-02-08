@@ -8,7 +8,7 @@ public:
 
         for (int i =0; i < nums.size(); i++) {
             int complement = target - nums[i];
-            if (hashmap.count(complement)) {
+            if (hashmap.find(complement) != hashmap.end()) {
                 return {hashmap[complement], i};
             }
             hashmap[nums[i]] = i;
