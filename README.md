@@ -6,4 +6,4 @@ Content:
 No jk I'm not adding every name
 It's just about things I added
 This would include:
-1. Solutions in different languages
+1. Solutions in different languages like python3
