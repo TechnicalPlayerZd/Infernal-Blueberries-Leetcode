@@ -1,16 +1,17 @@
 class Solution {
 public:
-    static bool divideArray(vector<int>& nums) {
-        bitset<501> parity=0;
-        for(int x: nums) parity.flip(x);
-        return (parity.count())?0:1;
+    bool divideArray(vector<int>& nums) {
+        int n = nums.size();
+        if (n % 2 != 0) return false;
+
+        vector<int> freq(501, 0);
+
+        for (int num : nums) freq[num]++;
+
+        for (int cnt : freq) {
+            if (cnt % 2 != 0) return false;
+        }
+
+        return true;
     }
 };
-
-
-auto init = []() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-    return 'c';
-}();
