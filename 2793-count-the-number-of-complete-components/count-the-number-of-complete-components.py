@@ -1,28 +1,26 @@
-from collections import defaultdict
-
 class Solution:
-    def countCompleteComponents(self, n, edges):
-        graph = defaultdict(list)
+    def countCompleteComponents(self, n: int, edges: List[List[int]]) -> int:
+        A = defaultdict(list)
+        for u, v in edges:
+            A[u].append(v)
+            A[v].append(u)
 
-        for a, b in edges:
-            graph[a].append(b)
-            graph[b].append(a)
+        vis, res = [False] * n, 0
+        for i, state in enumerate(vis):
+            if not state:
+                D = V = 0
 
-        visited = set()
-        count = 0
+                def dfs(x):
+                    nonlocal V, D
+                    V += 1
+                    D += len(A[x])
+                    vis[x] = True
 
-        def dfs(node, component):
-            component.add(node)
-            visited.add(node)
-            for neighbor in graph[node]:
-                if neighbor not in visited:
-                    dfs(neighbor, component)
+                    for state in A[x]:
+                        if not vis[state]:
+                            dfs(state)
 
-        for i in range(n):
-            if i not in visited:
-                component = set()
-                dfs(i, component)
-                if all(len(graph[node]) == len(component) - 1 for node in component):
-                    count += 1
+                dfs(i)
+                res += D == V * (V - 1)
 
-        return count
+        return res
